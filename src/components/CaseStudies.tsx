@@ -74,7 +74,7 @@ function BrandCard({ brand }: { brand: Brand }) {
             src={brand.logo}
             alt={brand.name}
             onError={() => setImgErr(true)}
-            className="max-h-12 max-w-[60%] object-contain select-none"
+            className="max-h-20 max-w-[72%] object-contain select-none"
             style={{ filter: brand.logoFilter }}
           />
         ) : (
@@ -131,9 +131,6 @@ export function CaseStudies() {
             transition={{ duration: 0.6 }}
             className="max-w-2xl"
           >
-            <span className="text-[11px] uppercase tracking-[0.28em] text-primary mb-5 block">
-              {t('cases.eyebrow')}
-            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-5">
               {t('cases.title')}
             </h2>
