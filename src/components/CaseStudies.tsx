@@ -42,14 +42,6 @@ const brands: Brand[] = [
     category: 'Books · Audio',
   },
   {
-    id: 'holzkern',
-    name: 'Holzkern',
-    logo: '/brands/holzkern.svg',
-    bg: 'linear-gradient(145deg, #111a10 0%, #1e3018 55%, #0f1a0e 100%)',
-    logoFilter: 'brightness(1.1)',
-    category: 'Lifestyle · Watches',
-  },
-  {
     id: 'your-brand',
     name: 'Your Brand',
     bg: 'linear-gradient(145deg, hsl(220 8% 9%) 0%, hsl(220 8% 13%) 100%)',
