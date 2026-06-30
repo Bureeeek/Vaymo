@@ -9,8 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Send, CheckCircle, ArrowLeft, Loader2 } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { toast } from 'sonner';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name is required').max(100),
@@ -34,13 +32,21 @@ function ContactContent() {
   const onSubmit = async (data: ContactFormData) => {
     setIsLoading(true);
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', { body: data });
-      if (error) throw error;
+      const res = await fetch('https://formsubmit.co/ajax/info@vaymo-agency.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          company: data.company,
+          email: data.email,
+          message: data.message,
+          _subject: `Neue Anfrage von ${data.name} (${data.company})`,
+        }),
+      });
+      if (!res.ok) throw new Error('Failed');
       setIsSubmitted(true);
-      toast.success(t('contact.success'));
-    } catch (error) {
-      if (import.meta.env.DEV) console.error('Error sending email:', error);
-      toast.error(language === 'de' ? 'Fehler beim Senden. Bitte versuche es erneut.' : 'Error sending. Please try again.');
+    } catch {
+      alert(language === 'de' ? 'Fehler beim Senden. Bitte schreib uns direkt: info@vaymo-agency.com' : 'Error sending. Please email us: info@vaymo-agency.com');
     } finally {
       setIsLoading(false);
     }
