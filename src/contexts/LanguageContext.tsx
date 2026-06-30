@@ -22,7 +22,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Case Studies
     "cases.eyebrow": "Ausgewählte Arbeiten",
     "cases.title": "Kampagnen, die wir aktiviert haben.",
-    "cases.subtitle": "Ein Blick auf Marken, mit denen wir zusammenarbeiten – von Travel bis Privacy. Wisch dich durch.",
+    "cases.subtitle": "Ein Blick auf Marken, mit denen wir zusammenarbeiten. Von Travel bis Privacy. Wisch dich durch.",
     "cases.ubigi.title": "Travel-Creator für globale eSIM-Reichweite.",
     "cases.ubigi.desc": "Wir haben Reise-Creator aktiviert, die Ubigi authentisch im echten Reisealltag gezeigt haben – statt klassischer Werbung.",
     "cases.proton.title": "Privacy erklärt, ohne erhobenen Zeigefinger.",
@@ -36,7 +36,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     "hero.headline": "Die richtigen Creator für deine Marke.",
     "hero.subheadline":
-      "Wir finden passende Creator und setzen Kampagnen für dich um —",
+      "Wir finden passende Creator und setzen Kampagnen für dich um,",
     "hero.cta": "Kontaktiere uns",
     "hero.secondary": "Mehr erfahren",
     "hero.platforms": "Aktiv auf",
@@ -97,7 +97,7 @@ const translations: Record<Language, Record<string, string>> = {
     "process.title": "Der Vaymo-Prozess",
     "process.subtitle": "So skalieren wir deine Marke.",
     "process.step1.title": "Strategie & Budget",
-    "process.step1.desc": "Definition der Ziele und Budget-Planung für maximale Wirkung.",
+    "process.step1.desc": "Ziele klären und Budget sinnvoll planen.",
     "process.step2.title": "Creator Sourcing",
     "process.step2.desc": "Wir filtern die Tech-Nische nach den perfekten Creatoren.",
     "process.step3.title": "Brand Approval",
@@ -107,7 +107,7 @@ const translations: Record<Language, Record<string, string>> = {
     "process.step5.title": "Quality Check",
     "process.step5.desc": "Umfassende Review vor dem Go-Live für beste Qualität.",
     "process.step6.title": "Data & Payout",
-    "process.step6.desc": "Glasklares Reporting & faire Abwicklung für alle.",
+    "process.step6.desc": "Klares Reporting und faire Abwicklung.",
 
     // Roadmap Toggle
     "roadmap.forBrands": "Für Brands",
@@ -135,11 +135,11 @@ const translations: Record<Language, Record<string, string>> = {
     "roadmap.brand.approval.title": "Brand Approval",
     "roadmap.brand.approval.desc": "Du entscheidest, welche Creator zu deiner Marke passen.",
     "roadmap.brand.management.title": "Full-Service Management",
-    "roadmap.brand.management.desc": "Wir regeln Briefings, Kommunikation & Logistik.",
+    "roadmap.brand.management.desc": "Wir regeln Briefings, Kommunikation und Logistik.",
     "roadmap.brand.quality.title": "Quality Check",
     "roadmap.brand.quality.desc": "Umfassende Review vor dem Veröffentlichen für beste Qualität.",
     "roadmap.brand.payout.title": "Data & Payout",
-    "roadmap.brand.payout.desc": "Glasklares Reporting & faire Abwicklung für alle.",
+    "roadmap.brand.payout.desc": "Klares Reporting und faire Abwicklung für alle Seiten.",
 
     // Roadmap CTA
     "roadmap.cta.text": "Berechne hier, wie viel Zeit du mit Vaymo sparst",
@@ -147,7 +147,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Vaymo Standard Section
     "standard.title": "Der Vaymo-Standard",
-    "standard.subtitle": "Von Chaos zu Klarheit – so arbeiten wir.",
+    "standard.subtitle": "Von Chaos zu Klarheit. So arbeiten wir.",
     "standard.chaosLabel": "Typische Agency-Anfrage",
     "standard.chaosFrom": "agency@website.com",
     "standard.noTimeline": "Keine Timeline",
@@ -170,7 +170,7 @@ const translations: Record<Language, Record<string, string>> = {
     "ethics.transparency.keyword": "Transparenz",
     "ethics.transparency.title": "Volle Transparenz",
     "ethics.transparency.desc":
-      "Klare Kommunikation und ehrliche Metriken – keine versteckten Kosten. Wir legen alle Karten offen auf den Tisch.",
+      "Klare Kommunikation und ehrliche Metriken, keine versteckten Kosten. Wir legen alle Karten auf den Tisch.",
     "ethics.authentic.keyword": "Reichweite",
     "ethics.authentic.title": "Echte Reichweite",
     "ethics.authentic.desc":
@@ -215,7 +215,7 @@ const translations: Record<Language, Record<string, string>> = {
     "stats.creators.label": "Creator",
     "stats.creators.desc": "Geprüfte Creator in unserem aktiven Netzwerk.",
     "stats.goal.label": "Ziel",
-    "stats.goal.desc": "Dein Erfolg ist unser einziges Ziel – kein Bullshit, keine leeren Versprechen.",
+    "stats.goal.desc": "Dein Erfolg ist unser einziges Ziel. Kein Bullshit, keine leeren Versprechen.",
 
     // Testimonials
     "testimonials.brands.title": "Was Marken über uns sagen.",
@@ -259,7 +259,7 @@ const translations: Record<Language, Record<string, string>> = {
     "calculator.withVaymo": "Mit Vaymo",
     "calculator.timeSaved": "Zeitersparnis",
     "calculator.vaymoSubtext": "Wir übernehmen 85 % des Aufwands im Hintergrund.",
-    "calculator.ctaText": "Struktur ist kein Luxus, sondern die Basis für Skalierung. Lass uns dein Management automatisieren.",
+    "calculator.ctaText": "Skalierung braucht klare Prozesse. Lass uns den Overhead übernehmen.",
     "calculator.ctaButton": "Termin vereinbaren",
   },
   en: {
@@ -275,7 +275,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Case Studies
     "cases.eyebrow": "Selected work",
     "cases.title": "Campaigns we've activated.",
-    "cases.subtitle": "A look at brands we've worked with – from travel to privacy. Swipe through.",
+    "cases.subtitle": "A look at brands we've worked with. From travel to privacy. Swipe through.",
     "cases.ubigi.title": "Travel creators for global eSIM reach.",
     "cases.ubigi.desc": "We activated travel creators who showed Ubigi naturally in real journeys – not as a classic ad.",
     "cases.proton.title": "Privacy, explained without the lecture.",
@@ -289,7 +289,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     "hero.headline": "The right creators for your brand.",
     "hero.subheadline":
-      "We find the right creators and run your campaigns —",
+      "We find the right creators and run your campaigns,",
     "hero.cta": "Contact Us",
     "hero.secondary": "Learn more",
     "hero.platforms": "Active on",
@@ -360,7 +360,7 @@ const translations: Record<Language, Record<string, string>> = {
     "process.step5.title": "Quality Check",
     "process.step5.desc": "Comprehensive review before go-live for best quality.",
     "process.step6.title": "Data & Payout",
-    "process.step6.desc": "Crystal-clear reporting & fair processing for everyone.",
+    "process.step6.desc": "Clear reporting and fair processing for everyone.",
 
     // Roadmap Toggle
     "roadmap.forBrands": "For Brands",
@@ -387,11 +387,11 @@ const translations: Record<Language, Record<string, string>> = {
     "roadmap.brand.approval.title": "Brand Approval",
     "roadmap.brand.approval.desc": "You decide which creators fit your brand.",
     "roadmap.brand.management.title": "Full-Service Management",
-    "roadmap.brand.management.desc": "We handle briefings, communication & logistics.",
+    "roadmap.brand.management.desc": "We handle briefings, communication and logistics.",
     "roadmap.brand.quality.title": "Quality Check",
     "roadmap.brand.quality.desc": "In-depth quality review prior to every publication.",
     "roadmap.brand.payout.title": "Data & Payout",
-    "roadmap.brand.payout.desc": "Crystal-clear reporting & fair processing for everyone.",
+    "roadmap.brand.payout.desc": "Clear reporting and fair processing for everyone.",
 
     // Roadmap CTA
     "roadmap.cta.text": "Calculate how much time you save with Vaymo",
@@ -399,7 +399,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Vaymo Standard Section
     "standard.title": "The Vaymo Standard",
-    "standard.subtitle": "From chaos to clarity – this is how we work.",
+    "standard.subtitle": "From chaos to clarity. This is how we work.",
     "standard.chaosLabel": "Typical Agency Request",
     "standard.chaosFrom": "agency@website.com",
     "standard.noTimeline": "No Timeline",
@@ -422,7 +422,7 @@ const translations: Record<Language, Record<string, string>> = {
     "ethics.transparency.keyword": "Transparency",
     "ethics.transparency.title": "Full Transparency",
     "ethics.transparency.desc":
-      "Clear communication and honest metrics – no hidden costs. We put all our cards on the table.",
+      "Clear communication and honest metrics, no hidden costs. We put all our cards on the table.",
     "ethics.authentic.keyword": "Reach",
     "ethics.authentic.title": "Real Reach",
     "ethics.authentic.desc":
@@ -467,7 +467,7 @@ const translations: Record<Language, Record<string, string>> = {
     "stats.creators.label": "Creators",
     "stats.creators.desc": "Vetted creators in our active network.",
     "stats.goal.label": "Goal",
-    "stats.goal.desc": "Your success is our only goal — no fluff, no empty promises.",
+    "stats.goal.desc": "Your success is our only goal. No fluff, no empty promises.",
 
     // Testimonials
     "testimonials.brands.title": "What brands say about us.",
@@ -487,7 +487,7 @@ const translations: Record<Language, Record<string, string>> = {
     "team.max.name": "Max Weigel",
     "team.max.role": "Founder & CEO",
     "team.max.badge": "CEO",
-    "team.max.bio": "Max founded Vaymo because he believes creator marketing only works when it's honest and direct. He brings years of experience in brand building and creator partnerships — and is always the first point of contact for the big picture.",
+    "team.max.bio": "Max founded Vaymo because he believes creator marketing only works when it's honest and direct. He brings years of experience in brand building and creator partnerships, and is always the first point of contact for the big picture.",
     "team.abubakr.name": "AbuBakr A.",
     "team.abubakr.role": "Partnership Lead · DACH / Europe / LatAm",
     "team.abubakr.badge": "Partnerships",
@@ -495,7 +495,7 @@ const translations: Record<Language, Record<string, string>> = {
     "team.ayoub.name": "Ayoub",
     "team.ayoub.role": "Campaign Manager · DACH / Europe / LatAm",
     "team.ayoub.badge": "Campaigns",
-    "team.ayoub.bio": "Ayoub manages the operational side of every campaign — from briefing to go-live. He keeps all the threads in hand so timelines hold, content fits, and you always know what's happening.",
+    "team.ayoub.bio": "Ayoub manages the operational side of every campaign, from briefing to go-live. He keeps all the threads in hand so timelines hold, content fits, and you always know what's happening.",
 
     // Efficiency Calculator
     "calculator.badge": "Efficiency Calculator",
@@ -511,7 +511,7 @@ const translations: Record<Language, Record<string, string>> = {
     "calculator.withVaymo": "With Vaymo",
     "calculator.timeSaved": "Time Saved",
     "calculator.vaymoSubtext": "We handle 85% of the workload behind the scenes.",
-    "calculator.ctaText": "Structure isn't a luxury – it's the foundation for scaling. Let us automate your management.",
+    "calculator.ctaText": "Scaling takes clear processes. Let us handle the management.",
     "calculator.ctaButton": "Schedule a Call",
   },
 };

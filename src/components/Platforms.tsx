@@ -27,7 +27,7 @@ const platforms: Platform[] = [
     tags: ['Trust', 'Long-form', 'Search'],
     desc: 'Für längere Erklärungen, Vertrauen und Produkte, die mehr Kontext brauchen.',
     format: 'Integration · Review · Tutorial',
-    audience: '8 – 25 Min · suchend',
+    audience: '8-25 Min · suchend',
     goal: 'Vertrauen aufbauen',
   },
   {
@@ -37,7 +37,7 @@ const platforms: Platform[] = [
     tags: ['Community', 'Reels', 'Story'],
     desc: 'Für Reels, Storys und Creator, die nah an ihrer Community sind.',
     format: 'Reel · Story · Carousel',
-    audience: '15 – 60 Sek · scrollend',
+    audience: '15-60 Sek · scrollend',
     goal: 'Community aktivieren',
   },
   {
@@ -47,7 +47,7 @@ const platforms: Platform[] = [
     tags: ['Reach', 'Trends', 'Native'],
     desc: 'Für schnelle Aufmerksamkeit, Trends und natürliche Produktmomente.',
     format: 'Native Post · Hook-First',
-    audience: '7 – 30 Sek · entdeckend',
+    audience: '7-30 Sek · entdeckend',
     goal: 'Reichweite & Buzz',
   },
   {
