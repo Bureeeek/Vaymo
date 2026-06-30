@@ -1,0 +1,21 @@
+node_modules/
+dist/
+dist-ssr/
+.env
+.env.local
+.env.*.local
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+bun.lock
+bun.lockb
+# Videos — host on Cloudinary/YouTube/Vimeo instead
+public/videos/
+*.mp4
+*.mov
+*.avi
+*.webm
