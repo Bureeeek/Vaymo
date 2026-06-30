@@ -57,9 +57,8 @@ function BrandCard({ brand }: { brand: Brand }) {
   return (
     <div
       className="relative flex-shrink-0 rounded-2xl overflow-hidden flex items-center justify-center
-                 transition-all duration-300 ease-out cursor-pointer
-                 hover:scale-[1.03] hover:brightness-110
-                 ring-1 ring-white/5 hover:ring-white/20"
+                 will-change-transform transition-transform duration-300 ease-out cursor-pointer
+                 hover:scale-[1.03] ring-1 ring-white/5"
       style={{ width: CARD_W, height: CARD_H, background: brand.bg }}
     >
       {/* subtle noise / grain overlay */}

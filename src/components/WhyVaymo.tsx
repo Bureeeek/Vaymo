@@ -25,8 +25,9 @@ export function WhyVaymo() {
             {points.map((p, i) => (
               <motion.div
                 key={p}
-                className="group flex gap-4 items-start p-4 rounded-xl border border-transparent
-                           hover:border-border hover:bg-card transition-all duration-300 cursor-default"
+                className="group flex gap-4 items-start p-4 rounded-xl cursor-default
+                           will-change-transform hover:-translate-y-0.5
+                           transition-transform duration-300 ease-out"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-50px' }}

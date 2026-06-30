@@ -61,8 +61,8 @@ export function Team() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.65, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="rounded-2xl border border-border overflow-hidden group
-                         hover:border-white/20 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/40
-                         transition-all duration-300"
+                         will-change-transform hover:-translate-y-2
+                         transition-transform duration-300 ease-out"
             >
               {/* Photo */}
               <MemberPhoto photo={m.photo} initials={m.initials} />
