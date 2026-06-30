@@ -196,4 +196,12 @@
   .bg-surface-soft {
     background: transparent;
   }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }

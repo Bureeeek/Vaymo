@@ -1,160 +1,197 @@
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-type CaseStudy = {
+const CARD_W = 360;
+const CARD_H = 216;
+const GAP    = 16;
+
+type Brand = {
   id: string;
-  client: string;
-  year: string;
+  name: string;
+  logo?: string;
+  bg: string;
+  logoFilter?: string;
   category: string;
-  descKey: string;
-  metrics: { value: string; labelKey: string }[];
-  tags: string[];
 };
 
-const studies: CaseStudy[] = [
+const brands: Brand[] = [
   {
     id: 'ubigi',
-    client: 'Ubigi',
-    year: '2025',
+    name: 'Ubigi',
+    logo: '/brands/ubigi.png',
+    bg: 'linear-gradient(145deg, #0b1e45 0%, #0e2d6b 55%, #0a1a38 100%)',
+    logoFilter: 'brightness(1.1)',
     category: 'Travel · eSIM',
-    descKey: 'cases.ubigi.desc',
-    metrics: [
-      { value: '12+',  labelKey: 'cases.metric.creators'   },
-      { value: '2.4M', labelKey: 'cases.metric.reach'      },
-      { value: '6.1%', labelKey: 'cases.metric.engagement' },
-    ],
-    tags: ['Instagram', 'TikTok'],
   },
   {
     id: 'proton',
-    client: 'Proton',
-    year: '2024',
+    name: 'Proton',
+    logo: '/brands/proton.png',
+    bg: 'linear-gradient(145deg, #160d2e 0%, #2a1260 55%, #1a0a38 100%)',
     category: 'Privacy · SaaS',
-    descKey: 'cases.proton.desc',
-    metrics: [
-      { value: '8',    labelKey: 'cases.metric.creators'   },
-      { value: '1.1M', labelKey: 'cases.metric.reach'      },
-      { value: '4.8%', labelKey: 'cases.metric.engagement' },
-    ],
-    tags: ['YouTube', 'Long-Form'],
   },
   {
-    id: 'placeholder',
-    client: 'Your Brand',
-    year: '2026',
-    category: '—',
-    descKey: 'cases.next.desc',
-    metrics: [
-      { value: '∞', labelKey: 'cases.metric.creators' },
-      { value: '—', labelKey: 'cases.metric.reach'    },
-      { value: '—', labelKey: 'cases.metric.engagement' },
-    ],
-    tags: [],
+    id: 'nextory',
+    name: 'Nextory',
+    logo: '/brands/nextory.png',
+    bg: 'linear-gradient(145deg, #2a1500 0%, #5c2e00 55%, #3a1a00 100%)',
+    category: 'Books · Audio',
+  },
+  {
+    id: 'holzkern',
+    name: 'Holzkern',
+    logo: '/brands/holzkern.png',
+    bg: 'linear-gradient(145deg, #111a10 0%, #1e3018 55%, #0f1a0e 100%)',
+    category: 'Lifestyle · Watches',
+  },
+  {
+    id: 'your-brand',
+    name: 'Your Brand',
+    bg: 'linear-gradient(145deg, hsl(220 8% 9%) 0%, hsl(220 8% 13%) 100%)',
+    category: '2026',
   },
 ];
 
-export function CaseStudies() {
-  const { t } = useLanguage();
+function BrandCard({ brand }: { brand: Brand }) {
+  const [imgErr, setImgErr] = useState(false);
 
   return (
-    <section id="cases" className="py-24 md:py-32 border-t border-border">
+    <div
+      className="relative flex-shrink-0 rounded-2xl overflow-hidden flex items-center justify-center"
+      style={{ width: CARD_W, height: CARD_H, background: brand.bg }}
+    >
+      {/* subtle noise / grain overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage:
+            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+          backgroundSize: '160px',
+        }}
+      />
+
+      {/* logo or name */}
+      <div className="relative z-10 flex items-center justify-center p-8 w-full h-full">
+        {brand.logo && !imgErr ? (
+          <img
+            src={brand.logo}
+            alt={brand.name}
+            onError={() => setImgErr(true)}
+            className="max-h-12 max-w-[60%] object-contain select-none"
+            style={{ filter: brand.logoFilter }}
+          />
+        ) : (
+          brand.id === 'your-brand' ? (
+            <div className="text-center">
+              <div className="text-foreground/20 text-xs uppercase tracking-[0.28em] mb-2">Next up</div>
+              <div className="text-foreground/30 text-2xl font-bold tracking-wide">Your Brand</div>
+            </div>
+          ) : (
+            <span className="text-white/80 text-2xl font-bold tracking-wide">{brand.name}</span>
+          )
+        )}
+      </div>
+
+      {/* bottom gradient edge */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
+        style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%)' }}
+      />
+
+      {/* category label */}
+      <div className="absolute bottom-4 left-5 z-10">
+        <span className="text-[10px] uppercase tracking-[0.22em] text-white/35">
+          {brand.category}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function CaseStudies() {
+  const { t } = useLanguage();
+  const [index, setIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const maxIndex = brands.length - 1;
+
+  const slide = (dir: 1 | -1) => {
+    const next = Math.min(maxIndex, Math.max(0, index + dir));
+    setIndex(next);
+    scrollRef.current?.scrollTo({ left: next * (CARD_W + GAP), behavior: 'smooth' });
+  };
+
+  return (
+    <section id="cases" className="py-24 md:py-32 border-t border-border overflow-hidden">
       <div className="section-container">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 md:mb-20 max-w-2xl"
-        >
-          <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground mb-5 block">
-            {t('cases.eyebrow')}
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-5">
-            {t('cases.title')}
-          </h2>
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            {t('cases.subtitle')}
-          </p>
-        </motion.div>
+        {/* Header row */}
+        <div className="flex items-start justify-between gap-6 mb-14 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl"
+          >
+            <span className="text-[11px] uppercase tracking-[0.28em] text-primary mb-5 block">
+              {t('cases.eyebrow')}
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-5">
+              {t('cases.title')}
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              {t('cases.subtitle')}
+            </p>
+          </motion.div>
 
-        <div>
-          {studies.map((s, i) => (
+          {/* Arrows */}
+          <div className="flex items-center gap-2 flex-shrink-0 pt-1">
+            <button
+              onClick={() => slide(-1)}
+              disabled={index === 0}
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center
+                         text-muted-foreground hover:text-foreground hover:border-foreground/40
+                         disabled:opacity-20 disabled:cursor-default transition-all duration-200"
+              aria-label="Previous"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => slide(1)}
+              disabled={index >= maxIndex}
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center
+                         text-muted-foreground hover:text-foreground hover:border-foreground/40
+                         disabled:opacity-20 disabled:cursor-default transition-all duration-200"
+              aria-label="Next"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Cards track */}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto scrollbar-none"
+          style={{ gap: GAP, scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
+          onScroll={e => {
+            const left = (e.target as HTMLDivElement).scrollLeft;
+            setIndex(Math.round(left / (CARD_W + GAP)));
+          }}
+        >
+          {brands.map((brand, i) => (
             <motion.div
-              key={s.id}
-              initial={{ opacity: 0, y: 16 }}
+              key={brand.id}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
-              className={`group grid grid-cols-12 gap-x-6 gap-y-5 py-9 md:py-11 items-center cursor-default
-                          ${i < studies.length - 1 ? 'border-b border-border' : ''}`}
+              transition={{ duration: 0.55, delay: i * 0.08 }}
+              style={{ scrollSnapAlign: 'start', flexShrink: 0 }}
             >
-              {/* Index */}
-              <div className="col-span-1">
-                <span className="text-xs text-muted-foreground/30 font-mono tabular-nums">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-              </div>
-
-              {/* Client name + meta */}
-              <div className="col-span-11 md:col-span-3">
-                <div className="font-anton uppercase text-3xl sm:text-4xl md:text-[2.6rem] text-foreground leading-none tracking-wide mb-3">
-                  {s.client}
-                </div>
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
-                  <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                    {s.category}
-                  </span>
-                  {s.year && (
-                    <>
-                      <span className="text-muted-foreground/30 text-[10px]">·</span>
-                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                        {s.year}
-                      </span>
-                    </>
-                  )}
-                  {s.tags.map(tag => (
-                    <span
-                      key={tag}
-                      className="text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full border border-border text-muted-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Description */}
-              <div className="col-span-12 md:col-span-5 md:px-6">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {t(s.descKey)}
-                </p>
-              </div>
-
-              {/* Metrics + arrow */}
-              <div className="col-span-12 md:col-span-3 flex items-center justify-between md:justify-end gap-6">
-                <div className="flex gap-7">
-                  {s.metrics.slice(0, 2).map(m => (
-                    <div key={m.labelKey}>
-                      <div className="text-xl font-bold text-foreground leading-none tabular-nums">
-                        {m.value}
-                      </div>
-                      <div className="text-[9px] uppercase tracking-[0.18em] text-muted-foreground mt-1.5">
-                        {t(m.labelKey)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="shrink-0 w-9 h-9 rounded-full border border-border
-                                flex items-center justify-center
-                                group-hover:border-foreground/40 group-hover:bg-foreground/5
-                                transition-all duration-200">
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                </div>
-              </div>
-
+              <BrandCard brand={brand} />
             </motion.div>
           ))}
         </div>
