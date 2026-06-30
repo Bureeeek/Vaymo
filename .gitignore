@@ -13,9 +13,5 @@ npm-debug.log*
 Thumbs.db
 bun.lock
 bun.lockb
-# Videos — host on Cloudinary/YouTube/Vimeo instead
-public/videos/
-*.mp4
-*.mov
+# Large non-video binaries
 *.avi
-*.webm

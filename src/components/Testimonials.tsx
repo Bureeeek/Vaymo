@@ -100,11 +100,13 @@ function Avatar({ photo, initials }: { photo?: string; initials: string }) {
 function TestimonialCard({ item, i, lang }: { item: Testimonial; i: number; lang: 'de' | 'en' }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 28, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.55, delay: i * 0.1 }}
-      className="rounded-2xl border border-border bg-card p-6 lg:p-7 flex flex-col gap-5"
+      transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="rounded-2xl border border-border bg-card p-6 lg:p-7 flex flex-col gap-5
+                 hover:border-border/80 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1
+                 transition-all duration-300"
     >
       <p className="text-sm text-foreground/80 leading-relaxed flex-1">
         "{item.quote[lang]}"

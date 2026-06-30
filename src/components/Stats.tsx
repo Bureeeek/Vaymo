@@ -28,12 +28,14 @@ export function Stats() {
           {items.map((item, i) => (
             <motion.div
               key={item.labelKey}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="group cursor-default"
+              initial={{ opacity: 0, y: 32, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
+              transition={{ duration: 0.65, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight leading-none mb-3">
+              <div className="text-5xl sm:text-6xl font-bold tracking-tight leading-none mb-3
+                              text-foreground group-hover:text-foreground/70 transition-colors duration-300">
                 {item.num}
               </div>
               <div className="text-sm font-semibold text-foreground mb-2">

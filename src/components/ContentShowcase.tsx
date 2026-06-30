@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
@@ -16,7 +16,18 @@ export function ContentShowcase() {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [mutedMap, setMutedMap] = useState<Record<number, boolean>>({});
+  const [errorMap, setErrorMap] = useState<Record<number, boolean>>({});
   const refs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  useEffect(() => {
+    // Pre-check each video by trying to load metadata
+    videos.forEach((v, i) => {
+      const video = document.createElement('video');
+      video.src = v.src;
+      video.preload = 'metadata';
+      video.onerror = () => setErrorMap(prev => ({ ...prev, [i]: true }));
+    });
+  }, []);
 
   const togglePlay = (i: number) => {
     const video = refs.current[i];
@@ -51,14 +62,11 @@ export function ContentShowcase() {
       <div className="section-container">
         <motion.div
           className="text-center max-w-2xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 32, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="text-xs uppercase tracking-[0.25em] text-primary/80 mb-4 block">
-            {t('showcase.eyebrow')}
-          </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 tracking-tight">
             {t('showcase.title')}
           </h2>
@@ -73,6 +81,8 @@ export function ContentShowcase() {
             const isDimmed = activeIndex !== null && !isActive;
             const isMuted = mutedMap[i] ?? false;
 
+            const hasError = errorMap[i];
+
             return (
               <motion.div
                 key={v.src}
@@ -81,7 +91,7 @@ export function ContentShowcase() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 animate={{
-                  scale: isActive ? 1.04 : isDimmed ? 0.97 : 1,
+                  scale: isActive ? 1.05 : isDimmed ? 0.96 : 1,
                   opacity: isDimmed ? 0.55 : 1,
                 }}
                 transition={{
@@ -101,15 +111,23 @@ export function ContentShowcase() {
                 }}
                 onClick={() => togglePlay(i)}
               >
-                <video
-                  ref={(el) => (refs.current[i] = el)}
-                  src={v.src}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                />
+                {hasError ? (
+                  <div className="absolute inset-0 bg-secondary flex flex-col items-center justify-center gap-2">
+                    <div className="text-3xl">{v.flag}</div>
+                    <span className="text-xs text-muted-foreground">{v.creator}</span>
+                  </div>
+                ) : (
+                  <video
+                    ref={(el) => (refs.current[i] = el)}
+                    src={v.src}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    onError={() => setErrorMap(prev => ({ ...prev, [i]: true }))}
+                  />
+                )}
 
                 {/* Flag */}
                 <div className="absolute top-3 left-3 w-9 h-9 rounded-full bg-background/55 backdrop-blur-md border border-foreground/10 flex items-center justify-center text-lg z-10">

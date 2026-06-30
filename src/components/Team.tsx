@@ -56,11 +56,13 @@ export function Team() {
           {members.map((m, i) => (
             <motion.div
               key={m.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 36, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="rounded-2xl border border-border overflow-hidden group hover:border-border/80 transition-colors"
+              transition={{ duration: 0.65, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className="rounded-2xl border border-border overflow-hidden group
+                         hover:border-white/20 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/40
+                         transition-all duration-300"
             >
               {/* Photo */}
               <MemberPhoto photo={m.photo} initials={m.initials} />
