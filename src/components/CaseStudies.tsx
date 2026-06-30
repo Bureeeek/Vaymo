@@ -13,6 +13,7 @@ type Brand = {
   logo?: string;
   bg: string;
   logoFilter?: string;
+  logoScale?: number;
   category: string;
 };
 
@@ -39,6 +40,7 @@ const brands: Brand[] = [
     logo: '/brands/nextory.svg',
     bg: 'linear-gradient(145deg, #2a1500 0%, #5c2e00 55%, #3a1a00 100%)',
     logoFilter: 'brightness(1.1)',
+    logoScale: 1.6,
     category: 'Books · Audio',
   },
   {
@@ -75,7 +77,7 @@ function BrandCard({ brand }: { brand: Brand }) {
             alt={brand.name}
             onError={() => setImgErr(true)}
             className="max-h-20 max-w-[72%] object-contain select-none"
-            style={{ filter: brand.logoFilter }}
+            style={{ filter: brand.logoFilter, transform: brand.logoScale ? `scale(${brand.logoScale})` : undefined }}
           />
         ) : (
           brand.id === 'your-brand' ? (
